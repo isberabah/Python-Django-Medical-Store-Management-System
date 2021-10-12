@@ -50,15 +50,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware' ,
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION' : [
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication' ,
-    ] ,
-    'DEFAULT_PERMISSION_CLASSES' : (
-        'rest_framework.permission.AllowAny' ,
-        'rest_framework.permission.IsAuthenticatedOrReadOnly' ,
-    )
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ],
+    'DEFAULT_PERMISSIONS_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+        'rest_framework.permission.IsAuthenticatedOrReadOnly'
+    ]
 }
 
 ROOT_URLCONF = 'DjangoMidicalstoremanagement.urls'

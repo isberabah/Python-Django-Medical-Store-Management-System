@@ -2,14 +2,19 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 # Create your views here.
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.templatetags.rest_framework import data
 from rest_framework.generics import get_object_or_404
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from DjangoMedicalApp.models import Company
 from DjangoMedicalApp.serializer import CompanySerializer
 
 
 class CompanyViewSets(viewsets.ViewSet) :
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     def list(self , request) :
         company = Company.object.all()
         serializer = CompanySerializer(company , many=True , context={ "request" , request })
